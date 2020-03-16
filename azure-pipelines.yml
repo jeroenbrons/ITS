@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: sudo apt install build-essential expect && make make EMULATOR=simh
+- script: sudo apt install build-essential expect && make EMULATOR=simh
   displayName: 'Run a one-line script'
 
 - script: |

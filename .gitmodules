@@ -28,3 +28,12 @@
 [submodule "tools/pdp6"]
 	path = tools/pdp6
 	url = https://github.com/aap/pdp6
+[submodule "tools/vt05"]
+	path = tools/vt05
+	url = https://github.com/aap/vt05
+[submodule "tools/tek4010"]
+	path = tools/tek4010
+	url = https://github.com/rricharz/Tek4010
+[submodule "tools/simlac"]
+	path = tools/simlac
+	url = https://github.com/livingcomputermuseum/sImlac

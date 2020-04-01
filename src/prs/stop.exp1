@@ -1,0 +1,12 @@
+STOP EXP /
+
+TREBLE
+KEY )
+TIME 4 4
+
+1 L  STOP 1 6T64 STOP 2 , STOP 3 , STOP 4 , STOP 5 , , STOP 6 , ,
+ STOP 7 , STOP 8 ,  , R16X. STOP 1 11B64 STOP 2 , STOP 3 , , STOP 4 , , , STOP 5
+ , , , , STOP 6 , , , STOP 7 , , STOP 8 , /
+
+END
+

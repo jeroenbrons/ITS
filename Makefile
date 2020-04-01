@@ -28,13 +28,14 @@ SRC = syseng sysen1 sysen2 sysen3 sysnet kshack dragon channa	\
       fonts zork 11logo kmp info aplogo bkph bbn pdp11 chsncp sca music1 \
       moon teach ken lmio1 llogo a2deh chsgtv clib sys3 lmio turnip \
       mits_s rab stan_k bs cstacy kp dcp2 -pics- victor imlac rjl mb bh \
-      lars drnil radia gjd maint bolio cent shrdlu vis
+      lars drnil radia gjd maint bolio cent shrdlu vis cbf digest prs
 DOC = info _info_ sysdoc sysnet syshst kshack _teco_ emacs emacs1 c kcc \
       chprog sail draw wl pc tj6 share _glpr_ _xgpr_ inquir mudman system \
       xfont maxout ucode moon acount alan channa fonts games graphs humor \
       kldcp libdoc lisp _mail_ midas quux scheme manual wp chess ms macdoc \
       aplogo _temp_ pdp11 chsncp cbf rug bawden llogo eak clib teach pcnet \
-      combat pdl minits mits_s chaos hal -pics- imlac maint cent ksc klh
+      combat pdl minits mits_s chaos hal -pics- imlac maint cent ksc klh \
+      digest prs
 BIN = sys sys1 sys2 emacs _teco_ lisp liblsp alan inquir sail comlap \
       c decsys graphs draw datdrw fonts fonts1 fonts2 games macsym \
       maint imlac _www_ gt40 llogo bawden sysbin -pics- lmman r shrdlu
@@ -47,7 +48,7 @@ BINIGNORE=-e '^(ka10|kl10|ks10|minsys)$$'
 # These are on the minsrc tape.
 SRCIGNORE=-e '^(system|midas)$$'
 
-SUBMODULES = dasm itstar klh10 mldev simh sims supdup tapeutils tv11 pdp6
+SUBMODULES = dasm itstar klh10 mldev simh sims supdup tapeutils tv11 pdp6 vt05 tek4010
 
 # These files are used to create bootable tape images.
 RAM = bin/ks10/boot/ram.262
@@ -65,6 +66,9 @@ GT40=tools/simh/BIN/pdp11 $(OUT)/bootvt.img
 TV11=tools/tv11/tv11
 PDP6=tools/pdp6/emu/pdp6
 KLFEDR=tools/dasm/klfedr
+DATAPOINT=tools/vt05/dp3300
+VT52=tools/vt05/vt52
+TEK=tools/tek4010/tek4010
 
 H3TEXT=$(shell cd build; ls h3text.*)
 DDT=$(shell cd src; ls sysen1/ddt.* syseng/lsrtns.* syseng/msgs.* syseng/datime.* syseng/ntsddt.*)
@@ -84,7 +88,7 @@ out/klh10/stamp: $(OUT)/rp0.dsk
 out/simh/stamp: $(OUT)/rp0.dsk $(GT40)
 	$(TOUCH) $@
 
-out/pdp10-ka/stamp: $(OUT)/rp03.2 $(OUT)/rp03.3 $(GT40) $(TV11) $(PDP6)
+out/pdp10-ka/stamp: $(OUT)/rp03.2 $(OUT)/rp03.3 $(GT40) $(TV11) $(PDP6) $(DATAPOINT) $(VT52) $(TEK)
 	$(TOUCH) $@
 
 out/pdp10-kl/stamp: $(OUT)/rp04.1
@@ -228,7 +232,7 @@ $(KLH10):
 	./autogen.sh; \
 	$(MKDIR) tmp; \
 	cd tmp; \
-	export CONFFLAGS_USR=-DKLH10_DEV_DPTM03=0; \
+	export CONFFLAGS_USR="-DKLH10_DEV_DPTM03=0 $$CONFFLAGS_USR"; \
 	../configure --enable-lights --bindir="$(CURDIR)/build/klh10"; \
 	$(MAKE) -C bld-ks-its; \
 	$(MAKE) -C bld-ks-its install
@@ -252,11 +256,23 @@ $(MAGFRM) $(KLFEDR):
 	$(MAKE) -C tools/dasm
 
 $(TV11):
-	$(MAKE) -C tools/tv11 CFLAGS=-O3
+	$(MAKE) -C tools/tv11 tv11 CFLAGS=-O3
 	$(MAKE) -C tools/tv11/tvcon
 
 $(PDP6):
 	$(MAKE) -C tools/pdp6/emu
+
+$(DATAPOINT):
+	$(MAKE) -C tools/vt05 dp3300
+
+$(VT52):
+	$(MAKE) -C tools/vt05 vt52
+
+tek-hack:
+	rm $(TEK)
+
+$(TEK): tek-hack
+	$(MAKE) -C tools/tek4010 tek4010
 
 tools/supdup/supdup:
 	$(MAKE) -C tools/supdup

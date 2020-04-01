@@ -23,8 +23,13 @@ at tk 10000 speed=300
 # 10001 reserved for GE bagbiters, hah.
 set dpk enabled
 at dpk 10002 speed=4800
+at dpk line=11,10019 speed=4800
+at dpk line=15,10020 speed=4800
 set mty enabled
 at mty 10003 speed=50000
+at mty line=9,10018 speed=9600
+at mty line=8,10017 speed=9600
+at mty line=7,10016;notelnet speed=50000
 set ten11 enabled
 at ten11 10011
 set auxcpu enabled
@@ -45,4 +50,19 @@ set mta type=b
 set dt mpx=6
 set imp mpx=4
 set dpa noheaders
+set wcnsls enabled joystick
+set ocnsls enabled
+set imx enabled mpx=3
+set imx channel=2;unit0;axis0;negate
+set imx channel=3;unit0;axis1
+set imx channel=10;unit0;axis3;negate
+set imx channel=5;unit1;axis0;negate
+set imx channel=6;unit1;axis1
+set imx channel=30;unit1;axis3;negate
+set imx channel=70;unit2;axis0
+set imx channel=71;unit2;axis1;negate
+set imx channel=73;unit2;axis3
+set imx channel=77;unit3;axis0
+set imx channel=76;unit3;axis1;negate
+set imx channel=74;unit3;axis3
 b ptr

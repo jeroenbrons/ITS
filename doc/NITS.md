@@ -61,7 +61,16 @@ Note: `XX` means the name of the ITS you are building.
 
    Answer the question `MACHINE NAME = ` with `XX`.
 
-4. Merge the ITS binary with DDT and (N)SALV.
+4. If you made a change to (N)SALV, you should update @ (N)SALV.  The latter is just (N)SALV dumped with its symbol table and DDT in the core image.
+
+   ```
+   L$DDT
+   T$(N)SALV BIN
+   $U
+   D$(N)SALV
+   ```
+
+5. Merge the ITS binary with DDT and (N)SALV.
 
    There are two options for doing this.  The normal way is to reboot and do it in DSKDMP.  The other way is to do it in timesharing DDT.
 
@@ -71,7 +80,7 @@ Note: `XX` means the name of the ITS you are building.
      2. Load DDT: <code>L<kbd>$</kbd>DDT</code>
      3. Give ITS and its symbols to DDT: <code>T<kbd>$</kbd>NITS BIN</code>
      4. You're now in DDT.  Exit back to DSKDMP: <code><kbd>$</kbd>U</code>
-     5. Merge in (N)SALV.  For KA10: <code>M<kbd>$</kbd>SALV</code>  For KS10: <code>M<kbd>$</kbd>NSALV BIN</code>
+     5. Merge in (N)SALV.  For KA10: <code>M<kbd>$</kbd>SALV BIN</code>  For KS10: <code>M<kbd>$</kbd>NSALV BIN</code>
      6. Write the result to disk: <code>D<kbd>$</kbd>NITS</code>  Again, it's prudent to invent a new file name here.  Use <code>F<kbd>$</kbd></code> for a file listing.
 
    - Timesharing DDT method.
@@ -82,6 +91,6 @@ Note: `XX` means the name of the ITS you are building.
      4. Merge in ITS with symbols: <code><kbd>$</kbd><kbd>$</kbd>L .; NITS BIN</code>
      5. Write the result to disk: <code><kbd>$</kbd>Y .; @ NITS</code>
 
-5. If you're in DSKDMP and want to run ITS right away after dumping it, type <code>G<kbd>$</kbd></code>.  You're now in DDT.  You can examine ITS, set breakpoints, etc.  Type <code><kbd>$</kbd>G</code> to start ITS.
+6. If you're in DSKDMP and want to run ITS right away after dumping it, type <code>G<kbd>$</kbd></code>.  You're now in DDT.  You can examine ITS, set breakpoints, etc.  Type <code><kbd>$</kbd>G</code> to start ITS.
 
-6. When the new ITS has passed testing, rename the old `.; @ ITS` to `.; @ OITS`.  Rename the new ITS to `.; @ ITS`.
+7. When the new ITS has passed testing, rename the old `.; @ ITS` to `.; @ OITS`.  Rename the new ITS to `.; @ ITS`.

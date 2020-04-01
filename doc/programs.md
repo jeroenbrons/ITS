@@ -82,6 +82,7 @@
 - DDTDOC, interactive DDT documentation.
 - DECUUO, TOPS-10 and WAITS emulator.
 - DFTP, Datacomputer file transfer.
+- DIGEST, digestify a mailing list.
 - DIRCPY, copy directory.
 - DIRDEV, list directories, sorted or subsetted.
 - DIRED, directory editor (independent from EMACS DIRED).
@@ -142,6 +143,7 @@
 - IDLE, list idle users.
 - IEC, Inter-Entity Communication.
 - IFILE, Chaosnet file service.
+- IMGOUT, outputs JCL in Image mode.
 - IMLOAD/IMTRAN, load or translate an Imlac program.
 - IMPRNT, image mode printer.
 - INFO, hypertext documentation.
@@ -184,12 +186,14 @@
 - LOCK, shut down system.
 - LOGO, BBN Logo.
 - LOOKUP, looks up user info in INQUIR database.
+- LORENZ, Edward Lorenz' strange attractor.
 - LOSS (device).
 - LOTCLN - LOGOUT TIMES cleanup program.
 - LSPEED, set TTY line parameters.
 - LSRDMP, dump the user database.
 - LSRPRT, print information about user groups.
 - LUSER, request help from registered list of logged-in users.
+- MBXLOC, lock a mailbox.
 - MACN80, Z80 cross assembler.
 - MACRO-10, DEC assembler.
 - MACSYMA, symbolic manipulation system.
@@ -209,6 +213,7 @@
 - MINI36, mini Chaosnet file server (36-bit).
 - MINITS, mini-ITS network utility.
 - MINIC, mini Chaosnet file server (old).
+- MINSKY TRON, display hack translated from the PDP-1.
 - MLDEV/MLSLV, allows access to remote systems as devices (e.g. DB:).
 - MLIFE, Mike Speciner's Conway Life.
 - MODEMS, modems dragon.
@@ -221,6 +226,7 @@
 - MUDINQ, Muddle inquirer.
 - MUNCH, TV-munching square.
 - MUNCH, munching squares for Type 340 display.
+- MUSCOM, music compiler.
 - NAME, shows logged in users and locations, aka FINGER.
 - NAMDRG, free TV display.
 - NETIME, network time dragon.
@@ -348,6 +354,7 @@
 - UFIND, find users.
 - ULISP, Lisp in Lisp.
 - UNTALK, split-screen comm-link program.
+- UNTRAN, untranslate an Imlac program.
 - UP/DOWN, check if host is online.
 - UPTIME, Chaosnet uptime server.
 - UPTIME, record ITS uptimes.

@@ -24,6 +24,11 @@ gt40() {
     started GT40 "$!"
 }
 
+imlac() {
+    (sleep 3; cd tools/simlac/imlac; mono bin/Debug/sImlac.exe ../../../build/pdp10-ka/imlac >../../../imlac.log 2>&1) &
+    started Imlac "$!"
+}
+
 tv11() {
     (sleep 3; tools/tv11/tv11 -s 4 -p 10011 localhost >tv11.log 2>&1) &
     started TV-11 "$!"
@@ -34,10 +39,52 @@ tvcon() {
     started "TV-console" "$!"
 }
 
+type340() {
+    cp build/pdp10-ka/run out/pdp10-ka/run
+}
+
+datapoint() {
+    (sleep 2; tools/vt05/dp3300 -a -B -b 4800 telnet localhost 10020 >datapoint.log 2>&1) &
+    started "Datapoint" "$!"
+}
+
+vt52() {
+    (sleep 2; tools/vt05/vt52 -B -b 9600 telnet localhost 10018 >vt52.log 2>&1) &
+    started "VT52" "$!"
+}
+
+tek() {
+    (sleep 2; tools/tek4010/tek4010 -b9600 telnet localhost 10017 >tek.log 2>&1) &
+    started "Tektronix" "$!"
+}
+
+help() {
+    cat <<EOF
+This start script takes several command line arguments:
+
+help - Display this help text.
+type340 - Enable the Type 340 display.
+gt40 - Start a GT40 emulator.
+imlac - Start an Imlac PDS-1 emulator.
+tv11 - Start a TV-11 emulator.
+tvcon - Start a TV display.
+datapoint - Start a Datapoint 3300 emulator.
+vt52 - Start a VT52 emulator.
+tek - Start a Tektronix 4010 emulator.
+
+EOF
+
+    touch out/pdp10-ka/nohelp
+}
+
+sed 's/set dpy enabled/set dpy disabled/' < build/pdp10-ka/run > out/pdp10-ka/run
+
+test -f out/pdp10-ka/nohelp || help
+
 while test -n "$1"; do
     "$1"
     shift
 done
 
-tools/sims/BIN/pdp10-ka build/pdp10-ka/run
+tools/sims/BIN/pdp10-ka out/pdp10-ka/run
 exit 0

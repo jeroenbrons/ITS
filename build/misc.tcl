@@ -223,6 +223,7 @@ respond "*" ":link dragon;hourly cnavrl,.mail.;comsat launch\r"
 respond "*" ":midas sysbin;_sra; gcmail\r"
 expect ":KILL"
 respond "*" ":link dragon; hourly gcmail,sysbin; gcmail bin\r"
+respond "*" ":link dragon; hourly gcbulk,sysbin; gcmail bin\r"
 
 respond "*" ":midas sysbin;qmail_ksc;qmail\r"
 respond "PWORD version (Y or N)? " "N\r"
@@ -240,6 +241,15 @@ respond "*" ":link .info.;mail info,.info.;qmail info\r"
 respond "*" ":midas sysbin;_sysnet;mails\r"
 expect ":KILL"
 respond "*" ":link device; chaos mail, sysbin; mails bin\r"
+
+# DIGEST
+respond "*" ":midas digest; ts digest_digest\r"
+expect ":KILL"
+respond "*" ":link dragon; hourly digest, digest; ts digest\r"
+
+# MBXLOC
+respond "*" ":midas digest; ts mbxloc_mbxloc\r"
+expect ":KILL"
 
 # TIME
 respond "*" ":midas sys1;ts time_sysen2;time\r"
@@ -430,7 +440,7 @@ respond "*" "advent=advent\r"
 respond "CORE USED" "\032"
 type ":kill\r"
 respond "*" ":dec sys:loader\r"
-respond "*" "advent/go\r"
+respond "*" "advent/g\r"
 respond "EXIT" ":start\r"
 respond "*" "\032"
 type ":start 45\r"
@@ -448,7 +458,7 @@ type ":kill\r"
 respond "*" ":dec sys:loader\r"
 respond "*" "adv3sb\r"
 respond "*" "adv3sr\r"
-respond "*" "/go\r"
+respond "*" "/g\r"
 respond "EXIT" ":start\r"
 respond "*" "adv3db.1"
 respond "*" "\032"
@@ -467,7 +477,7 @@ type ":kill\r"
 respond "*" ":dec sys:loader\r"
 respond "*" "adv4ma\r"
 respond "*" "adv4su\r"
-respond "*" "/go\r"
+respond "*" "/g\r"
 respond "EXIT" ":start\r"
 respond "*" "adv4db.2"
 respond "Are you a wizard?" "\032"
@@ -484,7 +494,7 @@ respond "CORE USED" "\032"
 type ":kill\r"
 respond "*" ":dec sys:loader\r"
 respond "*" "trek\r"
-respond "*" "/go\r"
+respond "*" "/g\r"
 respond "EXIT" ":start 45\r"
 respond "Command:" "d"
 respond "*" ":pdump games; ts trek\r"
@@ -599,6 +609,20 @@ respond "*" ":midas /t dsk0: .; @ munch_lars; munch\r"
 respond "with ^C" ".iotlsr==jfcl\r\003"
 expect ":KILL"
 
+# Minskytron, translated from PDP-1.
+respond "*" ":midas dsk0: lars; ts minsky_minsky tron\r"
+expect ":KILL"
+respond "*" ":link dsk0: .; @ minsky, lars; ts minsky\r"
+
+# Edward Lorenz' strange attactor.
+respond "*" ":midas dsk0: lars; ts lorenz_lorenz\r"
+expect ":KILL"
+respond "*" ":link dsk0: .; @ lorenz, lars; ts lorenz\r"
+
+# Mandelbrot.
+respond "*" ":midas lars; ts tvbrot_tvbrot\r"
+expect ":KILL"
+
 # PI
 respond "*" ":midas sys3;ts pi_rwg; ran\r"
 expect ":KILL"
@@ -699,7 +723,7 @@ expect "CORE USED"
 respond "*" "\003"
 respond "*" ":kill\r"
 respond "*" ":dec sys:loader\r"
-respond "*" "cross/go\r"
+respond "*" "cross/g\r"
 respond "*" ":start 45\r"
 respond "Command:" "d"
 respond "*" ":pdump sys1; ts cross\r"
@@ -796,6 +820,7 @@ respond "*" ":link sys1;ts suset,sys1;ts pr\r"
 respond "*" ":link sys1;ts doc,sys1;ts pr\r"
 respond "*" ":link sys1;ts intrup,sys1;ts pr\r"
 respond "*" ":link sys1;ts ttyvar,sys1;ts pr\r"
+respond "*" ":link sys1;ts prim,sys1;ts pr\r"
 
 respond "*" ":link .info.;its .calls,sysdoc;.calls >\r"
 respond "*" ":link .info.;its uuos,sysdoc;uuos >\r"
@@ -1049,6 +1074,11 @@ respond "*" ":midas sys3;ts expn_sysnet;expn\r"
 expect ":KILL"
 respond "*" ":link sys3;ts vrfy,sys3;ts expn\r"
 
+# MUSCOM
+respond "*" ":midas sysbin;_syseng; muscom\r"
+expect ":KILL"
+respond "*" ":link sys1;ts muscom, sysbin; muscom bin\r"
+
 # WHOLIN
 respond "*" ":midas sys2;ts wholin_sysen2;wholin\r"
 expect ":KILL"
@@ -1186,12 +1216,20 @@ respond "*" ":midas sys1; ts imload_syseng; imload\r"
 expect ":KILL"
 respond "*" ":link sys1; ts imtran, sys1; ts imload\r"
 
+# UNTRAN
+respond "*" ":midas imlac; ts untran_untran\r"
+expect ":KILL"
+
 # IMPRNT
 respond "*" ":midas sys1; ts imprnt_syseng; imprnt\r"
 expect ":KILL"
 respond "*" ":link sys1; ts imprin, sys1; ts imprnt\r"
 respond "*" ":link sys1; ts ardprn, sys1; ts imprnt\r"
 respond "*" ":link sys1; ts tekprn, sys1; ts imprnt\r"
+
+# IMGOUT
+respond "*" ":midas sys3; ts imgout_cbf; imgout\r"
+expect ":KILL"
 
 # Dump TV bitmap as XGP scan file.
 # TVREAD expects the binary in BKPH.
@@ -1238,7 +1276,6 @@ expect ":KILL"
 respond "*" ":imtran\r"
 respond "@" "imlac; m iml_sysbin; maze bin\r"
 respond "@" "\021"
-type ":kill\r"
 
 respond "*" ":midas sysbin;_klh; mazser\r"
 respond "NPTCL=" "1\r"
@@ -1259,7 +1296,6 @@ expect ":KILL"
 respond "*" ":imtran\r"
 respond "@" "imlac; swar iml_imlac; swar bin\r"
 respond "@" "\021"
-type ":kill\r"
 
 # PONG
 respond "*" ":midas imlac;_imsrc; pong\r"
@@ -1267,7 +1303,6 @@ expect ":KILL"
 respond "*" ":imtran\r"
 respond "@" "imlac; pong iml_imlac; pong bin\r"
 respond "@" "\021"
-type ":kill\r"
 
 # CRASH
 respond "*" ":midas imlac;_imsrc; crash\r"
@@ -1275,7 +1310,6 @@ expect ":KILL"
 respond "*" ":imtran\r"
 respond "@" "imlac; crash iml_imlac; crash bin\r"
 respond "@" "\021"
-type ":kill\r"
 
 # KLH's Knight TV clock.
 respond "*" ":midas klh; ts tinyw_klh; clock\r"
@@ -1772,7 +1806,7 @@ respond "*" "logo=logo\r"
 respond "CORE USED" "\032"
 type ":kill\r"
 respond "*" ":dec sys:loader\r"
-respond "*" "logo/go\r"
+respond "*" "logo/g\r"
 respond "EXIT" ":start 45\r"
 respond "Command:" "d"
 respond "*" ":pdump bbn; ts logo\r"

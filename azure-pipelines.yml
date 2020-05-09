@@ -22,3 +22,4 @@ steps:
     script: |
       sudo apt update
       sudo apt install build-essential expect
+      make EMULATOR=simh
